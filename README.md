@@ -30,7 +30,7 @@ There are several options to set up in the configuration file:
 - `target` - selected proteins used in the study.
   The table below shows datasets availability of corresponding proteins in  the database used in our project.
 
-  <html>
+  <!-- <html>
     <style>
       td.right-bound {
         border-right: 1px solid;
@@ -62,7 +62,13 @@ There are several options to set up in the configuration file:
         <td> &#x2713; </td>
       </tr>
     </table>
-  </html>
+  </html> -->
+  Target | LigEGFR | KIP | BindingDB
+  ------ | ------- | --- | ---------
+  HER1   | &#x2713; | &#x2713; | &#x2713;
+  HER2   | &#x2713; | &#x2713; | &#x2713;
+  HER3   | &#x2713; | &#x2713; | &#x2713;
+
 - `metrics` - a list of string representing the metrics to report in the experiment. The available options are
   - Classification
     - `Accuracy`
