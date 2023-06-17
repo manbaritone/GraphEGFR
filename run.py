@@ -1,6 +1,7 @@
 import argparse
 from graphegfr.configs import Configs
 from graphegfr.main import run
+from graphegfr.models import GraphEGFR as AttentiveFP_predictor, AttentiveFP_DGL
 
 def parse_args():
     global DEBUG
