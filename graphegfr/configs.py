@@ -51,6 +51,7 @@ database_path_dict = {
 }
 
 metrics_dict = {x.name: x for x in (
+    #Classification
     GMeans(),
     AUCPR(),
     Accuracy(),
@@ -63,6 +64,7 @@ metrics_dict = {x.name: x for x in (
     Precision(),
     Recall(),
     Specificity(),
+    # Regression
     RMSE(),
     MAE(),
     MSE(),
@@ -94,10 +96,10 @@ class Configs(object):
                 newconfigs['target_list'] = misc_target_dict[f"{configs['database']}_NONEGFR"]
             except KeyError:
                 raise ValueError(f"{configs['database']} database do not contain NonEGFR data")
-            else:
-                newconfigs['n_tasks'] = len(newconfigs['target_list'])
         else:
             raise ValueError('Invalid target name')
+        newconfigs['n_tasks'] = len(newconfigs['target_list'])
+        
         result_folder = configs.get('result_folder', 'results')
         run_dir = os.path.join(result_folder, configs['database'], configs['target']).rstrip('/')
         if os.path.exists(run_dir):
@@ -116,8 +118,15 @@ class Configs(object):
         newconfigs['enable_feac'] = configs.get('enable_feac', True)
         newconfigs['classify'] = configs.get('classify', False)
         newconfigs['device'] = torch.device(configs.get('device', 'cuda:0'))
-        newconfigs['metrics'] = [metrics_dict[name] for name in configs.get('metrics')]
-        newconfigs['mainmetrics'] = metrics_dict[configs.get('mainmetrics', configs['metrics'][0])]
+        if configs.get('metrics') is not None:
+            newconfigs['metrics'] = [metrics_dict[name] for name in configs.get('metrics')]
+        else:
+            if newconfigs['classify']:
+                newconfigs['metrics'] = [BCE(), AUROC(), AUCPR(), Balanced_Accuracy(), Accuracy(), Precision(), Recall()]
+            else:
+                newconfigs['metrics'] = [MSE(), RMSE(), PCC(), R2(), SRCC()]
+                
+        newconfigs['mainmetrics'] = metrics_dict[configs.get('mainmetrics', newconfigs['metrics'][0].name)]
 
         newconfigs['target'] = configs['target']
         newconfigs['database_path'] = database_path_dict[configs['database']]
