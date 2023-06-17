@@ -1,6 +1,13 @@
 # MacOS 
 .DS_Store
 
+# IST
+resources/
+results/
+log/
+*.sbatch
+*.out
+
 # Python
 */__pycache__/
 
