@@ -106,7 +106,7 @@ def run(configs: Configs, DEBUG):
     print('- Done!')
     print("Loading hyperparameters...")
     hyperparam = configs['hyperparam']
-    k = hyperparam.get('k')
+    
     num_layers = hyperparam.get('num_layers')
     num_timesteps = hyperparam.get('num_timesteps')
     dropout = hyperparam.get('dropout')
@@ -114,7 +114,6 @@ def run(configs: Configs, DEBUG):
     lr = hyperparam.get('lr')
     weight_decay = hyperparam.get('weight_decay')
     fingerprint_dim = hyperparam.get('fingerprint_dim')
-    output_units_num = hyperparam.get('output_units_num')
     
     print('- Done!')
     print('====================')
@@ -150,7 +149,7 @@ def run(configs: Configs, DEBUG):
             train_loader = DataLoader(trainset,batch_size=batchsize,shuffle=True,worker_init_fn=np.random.seed(seed))
             valid_loader = DataLoader(validset,batch_size=1,shuffle=False)
 
-            model = GraphEGFR(k,num_atom_features,fingerprint_dim, output_units_num, edge_dim, 
+            model = GraphEGFR(num_atom_features,edge_dim, fingerprint_dim,
                                           num_layers, num_timesteps, dropout,fingfeaf, fingfeac, configs).to(device)
             optimizer = optim.Adam(model.parameters(), lr=lr, weight_decay=weight_decay)
 
