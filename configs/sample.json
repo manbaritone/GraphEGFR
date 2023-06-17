@@ -1,5 +1,5 @@
 {
-    "result_folder": "result",
+    "result_folder": "results",
     "database": "BindingDB",
     "target": "HER1",
     "hyperparam": {
