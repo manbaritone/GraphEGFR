@@ -5,6 +5,7 @@
 resources/
 results/
 log/
+models/
 *.sbatch
 *.out
 
