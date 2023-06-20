@@ -78,7 +78,8 @@ class Configs(object):
         # Check
         newconfigs = {}
         
-        for required_param in ['database', 'target','hyperparam']:
+        # for required_param in ['database', 'target','hyperparam']:
+        for required_param in ['target','hyperparam']:
             if required_param not in configs:
                 raise ValueError(f"'{required_param}' parameter is required.")
         for param in configs.keys():
@@ -112,6 +113,7 @@ class Configs(object):
         splittername = configs.get('split','random') 
         if splittername not in {'random', 'scaffold'}:
             raise ValueError(f"Invalid value for 'splitter'")
+        newconfigs['database'] = configs.get('database', 'LigEGFR')
         newconfigs['splitter'] = RandomStratifiedSplitter() if splittername == 'random' else ScaffoldSplitter()
         newconfigs['enable_fea'] = configs.get('enable_fea', True)
         newconfigs['enable_feaf'] = configs.get('enable_feaf', True)
