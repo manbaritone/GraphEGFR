@@ -10,6 +10,8 @@ The file structure of the project is shown as the following diagram
 GraphEGFR
  ├─graphegfr
  ├─resources
+ │  └─LigEGFR
+ │
  ├─configs
  │  ├─setting1.json
  │  └─setting2.json
@@ -26,51 +28,11 @@ python3 run.py --config configs/settings1.json
 There are several options to set up in the configuration file:
 
 - `result_folder` - the directory where the results will be stored
-- `database` - identify which database to obtain data
-- `target` - selected proteins used in the study.
-  The table below shows datasets availability of corresponding proteins in  the database used in our project.
-
-  <!-- <html>
-    <style>
-      td.right-bound {
-        border-right: 1px solid;
-      }
-    </style>
-    <table>
-      <tr>
-        <th>Target \ Database</th>
-        <th>LigEGFR</th>
-        <th>KIP</th>
-        <th>BindingDB</th>
-      </tr>
-      <tr>
-        <td class="right-bound">HER1</td>
-        <td> &#x2713; </td>
-        <td> &#x2713; </td>
-        <td> &#x2713; </td>
-      </tr>
-      <tr>
-        <td class="right-bound">HER2</td>
-        <td> &#x2713; </td>
-        <td> &#x2713; </td>
-        <td> &#x2713; </td>
-      </tr>
-      <tr>
-        <td class="right-bound">HER3</td>
-        <td> &#x2713; </td>
-        <td> &#x2713; </td>
-        <td> &#x2713; </td>
-      </tr>
-    </table>
-  </html> -->
-  Target | LigEGFR | KIP | BindingDB
-  ------ | ------- | --- | ---------
-  HER1   | &#x2713; | &#x2713; | &#x2713;
-  HER2   | &#x2713; | &#x2713; | &#x2713;
-  HER3   | &#x2713; | &#x2713; | &#x2713;
-
+- `database` - identify which database to obtain data (only option available currently is `LigEGFR`; can be omitted)
+- `hyperparam` - configuration for model building process (in json format)
+- `target` - selected proteins used in the study
 - `metrics` - a list of string representing the metrics to report in the experiment. The available options are
-  - Classification
+  - classification
     - `Accuracy`
     - `AUCPR`
     - `AUROC`
@@ -83,7 +45,7 @@ There are several options to set up in the configuration file:
     - `Precision`
     - `Recall`
     - `Specificity`
-  - Regression
+  - regression
     - `RMSE`
     - `MAE`
     - `MSE`
