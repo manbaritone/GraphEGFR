@@ -163,15 +163,21 @@ def run(configs: Configs, DEBUG):
                 model_dict = model.state_dict()
 
                 # 1. filter out unnecessary keys
-                pretrained_dict = {k: pt_model_dict[k] for k in pt_model_dict if k in model_dict and pt_model_dict[k].size() == model_dict[k].size() and 'predict_property' not in k} # and any(x in k for x in ['conv1d', 'bn'])}
-
+                pt_model_dict_filtered = {k: pt_model_dict[k] for k in pt_model_dict if k in model_dict and pt_model_dict[k].size() == model_dict[k].size() and 'predict_property' not in k and any(x in k for x in configs['pt_layers_names'])}
+                print('original layers', [layer for layer in model_dict])
+                print('original pt layers', [layer for layer in pt_model_dict])
+                print("pretrained layers:", [layer for layer in pt_model_dict_filtered])
                 # 2. overwrite entries in the existing state dict
-                model_dict.update(pretrained_dict) 
+                model_dict.update(pt_model_dict_filtered) 
                 model.load_state_dict(model_dict)
-                for name,params in model.named_parameters():
-                    if name in pretrained_dict:
-                        params.requires_grad = False
-                del pretrained_model, pretrained_dict
+                freeze_pt = configs['freeze_pt']
+                if freeze_pt:
+                    for name,params in model.named_parameters():
+                        if name in pt_model_dict_filtered:
+                            params.requires_grad = False
+                            print(name)
+                print('freeze pretrained:', freeze_pt)
+                del pretrained_model, pt_model_dict_filtered
                 gc.collect()
                 print('Finished loading pretrained model')
 

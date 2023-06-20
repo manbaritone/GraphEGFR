@@ -23,6 +23,9 @@ param_types = {
     'mainmetrics':str,
     'split':str,
     'overwrite':bool,
+    'pt_model_path':str,
+    'pt_load':str,
+    'freeze_pt':bool,
 }
 
 target_dict = {
@@ -48,6 +51,12 @@ database_path_dict = {
     r'KIP':'./resources/KIP',
     r'BindingDB':'./resources/BindingDB',
     r'LigEGFR':'./resources/LigEGFR'
+}
+
+pt_layers_names_dict = {
+    'all': ['mol_model', 'cnn', 'dnn'],
+    'graph': ['mol_model'],
+    'fp': ['cnn', 'dnn'],
 }
 
 metrics_dict = {x.name: x for x in (
@@ -85,11 +94,12 @@ class Configs(object):
         for param in configs.keys():
             try:
                 param_type = param_types[param]
-                assert isinstance(configs[param], param_type)
+                configs_param_value = configs[param]
+                assert isinstance(configs_param_value, param_type)
             except KeyError:
                 raise KeyError(f'Invalid key: {param}')
-            except:
-                raise TypeError(f"Invalid type for {param} (is {type(param)}; expecting {param_type})")
+            except AssertionError:
+                raise TypeError(f"Invalid type for {param} (is {type(configs_param_value)}; expecting {param_type})")
         if configs['target'] in target_dict.keys():
             newconfigs['target_list'] = target_dict.get(configs['target'])
         elif configs['target'] == 'MTL_non_HER124':
@@ -127,6 +137,14 @@ class Configs(object):
                 newconfigs['metrics'] = [BCE(), AUROC(), AUCPR(), Balanced_Accuracy(), Accuracy(), Precision(), Recall()]
             else:
                 newconfigs['metrics'] = [MSE(), RMSE(), PCC(), R2(), SRCC()]
+           
+        if configs.get('pt_model_path', None) is not None:
+            path = configs['pt_model_path']
+            if not os.path.exists(path): raise FileNotFoundError('Path not found: ' + path)
+            newconfigs['pt_model_path'] = path
+            newconfigs['pt_layers_names'] = pt_layers_names_dict[configs.get('pt_load', 'all')]
+            newconfigs['freeze_pt'] = configs.get('freeze_pt',False)
+            
                 
         newconfigs['mainmetrics'] = metrics_dict[configs.get('mainmetrics', newconfigs['metrics'][0].name)]
 
