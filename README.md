@@ -32,26 +32,27 @@ There are several options to set up in the configuration file:
 - `hyperparam` - configuration for model building process (in json format)
 - `target` - selected proteins used in the study
 - `metrics` - a list of string representing the metrics to report in the experiment. The available options are
-  - classification
-    - `Accuracy`
-    - `AUCPR`
-    - `AUROC`
-    - `Balanced_Accuracy`
-    - `BCE`
-    - `F1`
-    - `GMeans`
-    - `Kappa`
-    - `MCC`
-    - `Precision`
-    - `Recall`
-    - `Specificity`
-  - regression
-    - `RMSE`
-    - `MAE`
-    - `MSE`
-    - `PCC`
-    - `R2`
-    - `SRCC`
+  - classification: 
+    `Accuracy`,
+    `AUCPR`,
+    `AUROC`,
+    `Balanced_Accuracy`,
+    `BCE`,
+    `F1`,
+    `GMeans`,
+    `Kappa`,
+    `MCC`,
+    `Precision`,
+    `Recall`,
+    `Specificity`
+  
+  - regression:
+    `RMSE`,
+    `MAE`,
+    `MSE`,
+    `PCC`,
+    `R2`,
+    `SRCC`
 
 ## Dependencies
 
