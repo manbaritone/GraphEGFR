@@ -40,15 +40,8 @@ target_dict = {
     r'delE746_A750':['delE746_A750'],
     r'T790M':['T790M']
 }
-            
-misc_target_dict = {
-    r'BindingDB_NONEGFR':pkl.load(open('./resources/BindingDB/BindingDB_nonegfr_target_list.pkl','rb')),
-    r'KIP_NONEGFR':pkl.load(open('./resources/KIP/KIP_nonegfr_target_list.pkl','rb'))
-}
 
 database_path_dict = {
-    r'KIP':'./resources/KIP',
-    r'BindingDB':'./resources/BindingDB',
     r'LigEGFR':'./resources/LigEGFR'
 }
 
@@ -72,10 +65,12 @@ class Configs(object):
         # Check
         newconfigs = {}
         
-        # for required_param in ['database', 'target','hyperparam']:
+        # check required parameters
         for required_param in ['target','hyperparam']:
             if required_param not in configs:
                 raise ValueError(f"'{required_param}' parameter is required.")
+            
+        # check matching parameter type
         for param in configs.keys():
             try:
                 param_type = param_types[param]
@@ -85,13 +80,10 @@ class Configs(object):
                 raise KeyError(f'Invalid key: {param}')
             except AssertionError:
                 raise TypeError(f"Invalid type for {param} (is {type(configs_param_value)}; expecting {param_type})")
+        
+        # check valid options
         if configs['target'] in target_dict.keys():
             newconfigs['target_list'] = target_dict.get(configs['target'])
-        elif configs['target'] == 'MTL_non_HER124':
-            try:
-                newconfigs['target_list'] = misc_target_dict[f"{configs['database']}_NONEGFR"]
-            except KeyError:
-                raise ValueError(f"{configs['database']} database do not contain NonEGFR data")
         else:
             raise ValueError('Invalid target name')
         newconfigs['n_tasks'] = len(newconfigs['target_list'])
