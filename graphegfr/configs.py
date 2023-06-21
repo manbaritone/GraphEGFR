@@ -17,7 +17,6 @@ param_types = {
     'no_fea':bool,
     'no_feaf':bool,
     'no_feac':bool,
-    'classify':bool,
     'device':str,
     'metrics':list,
     'mainmetrics':str,
@@ -60,20 +59,6 @@ pt_layers_names_dict = {
 }
 
 metrics_dict = {x.name: x for x in (
-    #Classification
-    GMeans(),
-    AUCPR(),
-    Accuracy(),
-    Balanced_Accuracy(),
-    AUROC(),
-    MCC(),
-    Kappa(),
-    BCE(),
-    F1(),
-    Precision(),
-    Recall(),
-    Specificity(),
-    # Regression
     RMSE(),
     MAE(),
     MSE(),
@@ -128,15 +113,11 @@ class Configs(object):
         newconfigs['enable_fea'] = configs.get('enable_fea', True)
         newconfigs['enable_feaf'] = configs.get('enable_feaf', True)
         newconfigs['enable_feac'] = configs.get('enable_feac', True)
-        newconfigs['classify'] = configs.get('classify', False)
         newconfigs['device'] = torch.device(configs.get('device', 'cuda:0'))
         if configs.get('metrics') is not None:
             newconfigs['metrics'] = [metrics_dict[name] for name in configs.get('metrics')]
         else:
-            if newconfigs['classify']:
-                newconfigs['metrics'] = [BCE(), AUROC(), AUCPR(), Balanced_Accuracy(), Accuracy(), Precision(), Recall()]
-            else:
-                newconfigs['metrics'] = [MSE(), RMSE(), PCC(), R2(), SRCC()]
+            newconfigs['metrics'] = [MSE(), RMSE(), PCC(), R2(), SRCC()]
            
         if configs.get('pt_model_path', None) is not None:
             path = configs['pt_model_path']

@@ -33,21 +33,6 @@ There are several options to set up in the configuration file:
 - `result_folder` *[optional]* - the directory where the results will be stored
 - `database` *[optional]* - identify which database to obtain data (only option available currently is `LigEGFR`; can be omitted)
 - `metrics` *[optional]* - a list of string representing the metrics to report in the experiment. The available options are
-  - classification:
-    `Accuracy`,
-    `AUCPR`,
-    `AUROC`,
-    `Balanced_Accuracy`,
-    `BCE`,
-    `F1`,
-    `GMeans`,
-    `Kappa`,
-    `MCC`,
-    `Precision`,
-    `Recall`,
-    `Specificity`
-  
-  - regression:
     `RMSE`,
     `MAE`,
     `MSE`,
