@@ -42,7 +42,7 @@ target_dict = {
 }
 
 database_path_dict = {
-    r'LigEGFR':'./resources/LigEGFR'
+    r'LigEGFR':'./resources'
 }
 
 pt_layers_names_dict = {
