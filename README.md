@@ -3,6 +3,8 @@
 # GraphEGFR
 GraphEGFR: Multi-task and Transfer learning Based on Molecular Graph Attention Mechanism and Fingerprints Improving Inhibitor Bioactivity Prediction for EGFR Family Proteins
 
+![GraphEGFR architecture](https://github.com/manbaritone/GraphEGFR/blob/main/graphegfr_architect.png)
+
 ## Instructions
 
 The file structure of the project is shown as the following diagram
