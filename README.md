@@ -44,8 +44,8 @@ There are several options to set up in the configuration file:
     `SRCC`
 
 ## Datasets and Pretrained Models Availability
-
-The datasets and pretrained models can be retrieved from [![https://doi.org/10.5281/zenodo.8051021]([link to image on GH](https://zenodo.org/badge/DOI/10.5281/zenodo.8051021.svg))](https://doi.org/10.5281/zenodo.8051021).
+[![name](link to image on GH)](link to your URL)
+The datasets and pretrained models can be retrieved from [![https://doi.org/10.5281/zenodo.8051021](https://zenodo.org/badge/DOI/10.5281/zenodo.8051021.svg)](https://doi.org/10.5281/zenodo.8051021).
 
 ## Dependencies
 
