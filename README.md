@@ -1,6 +1,7 @@
 <!-- markdownlint-disable MD033 -->
 
 # GraphEGFR
+GraphEGFR: Multi-task and Transfer learning Based on Molecular Graph Attention Mechanism and Fingerprints Improving Inhibitor Bioactivity Prediction for EGFR Family Proteins
 
 ## Instructions
 
