@@ -45,7 +45,7 @@ There are several options to set up in the configuration file:
 
 ## Datasets and Pretrained Models Availability
 
-The datasets and pretrained models can be retrieved from !(https://zenodo.org/badge/DOI/10.5281/zenodo.8051021.svg).
+The datasets and pretrained models can be retrieved from ![https://doi.org/10.5281/zenodo.8051021](https://zenodo.org/badge/DOI/10.5281/zenodo.8051021.svg).
 
 ## Dependencies
 
