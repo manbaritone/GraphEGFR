@@ -17,7 +17,6 @@ param_types = {
     'no_fea':bool,
     'no_feaf':bool,
     'no_feac':bool,
-    'classify':bool,
     'device':str,
     'metrics':list,
     'mainmetrics':str,
@@ -41,16 +40,9 @@ target_dict = {
     r'delE746_A750':['delE746_A750'],
     r'T790M':['T790M']
 }
-            
-misc_target_dict = {
-    r'BindingDB_NONEGFR':pkl.load(open('./resources/BindingDB/BindingDB_nonegfr_target_list.pkl','rb')),
-    r'KIP_NONEGFR':pkl.load(open('./resources/KIP/KIP_nonegfr_target_list.pkl','rb'))
-}
 
 database_path_dict = {
-    r'KIP':'./resources/KIP',
-    r'BindingDB':'./resources/BindingDB',
-    r'LigEGFR':'./resources/LigEGFR'
+    r'LigEGFR':'./resources'
 }
 
 pt_layers_names_dict = {
@@ -60,20 +52,6 @@ pt_layers_names_dict = {
 }
 
 metrics_dict = {x.name: x for x in (
-    #Classification
-    GMeans(),
-    AUCPR(),
-    Accuracy(),
-    Balanced_Accuracy(),
-    AUROC(),
-    MCC(),
-    Kappa(),
-    BCE(),
-    F1(),
-    Precision(),
-    Recall(),
-    Specificity(),
-    # Regression
     RMSE(),
     MAE(),
     MSE(),
@@ -87,9 +65,12 @@ class Configs(object):
         # Check
         newconfigs = {}
         
-        for required_param in ['database', 'target','hyperparam']:
+        # check required parameters
+        for required_param in ['target','hyperparam']:
             if required_param not in configs:
                 raise ValueError(f"'{required_param}' parameter is required.")
+            
+        # check matching parameter type
         for param in configs.keys():
             try:
                 param_type = param_types[param]
@@ -99,13 +80,10 @@ class Configs(object):
                 raise KeyError(f'Invalid key: {param}')
             except AssertionError:
                 raise TypeError(f"Invalid type for {param} (is {type(configs_param_value)}; expecting {param_type})")
+        
+        # check valid options
         if configs['target'] in target_dict.keys():
             newconfigs['target_list'] = target_dict.get(configs['target'])
-        elif configs['target'] == 'MTL_non_HER124':
-            try:
-                newconfigs['target_list'] = misc_target_dict[f"{configs['database']}_NONEGFR"]
-            except KeyError:
-                raise ValueError(f"{configs['database']} database do not contain NonEGFR data")
         else:
             raise ValueError('Invalid target name')
         newconfigs['n_tasks'] = len(newconfigs['target_list'])
@@ -122,19 +100,16 @@ class Configs(object):
         splittername = configs.get('split','random') 
         if splittername not in {'random', 'scaffold'}:
             raise ValueError(f"Invalid value for 'splitter'")
+        newconfigs['database'] = configs.get('database', 'LigEGFR')
         newconfigs['splitter'] = RandomStratifiedSplitter() if splittername == 'random' else ScaffoldSplitter()
         newconfigs['enable_fea'] = configs.get('enable_fea', True)
         newconfigs['enable_feaf'] = configs.get('enable_feaf', True)
         newconfigs['enable_feac'] = configs.get('enable_feac', True)
-        newconfigs['classify'] = configs.get('classify', False)
         newconfigs['device'] = torch.device(configs.get('device', 'cuda:0'))
         if configs.get('metrics') is not None:
             newconfigs['metrics'] = [metrics_dict[name] for name in configs.get('metrics')]
         else:
-            if newconfigs['classify']:
-                newconfigs['metrics'] = [BCE(), AUROC(), AUCPR(), Balanced_Accuracy(), Accuracy(), Precision(), Recall()]
-            else:
-                newconfigs['metrics'] = [MSE(), RMSE(), PCC(), R2(), SRCC()]
+            newconfigs['metrics'] = [MSE(), RMSE(), PCC(), R2(), SRCC()]
            
         if configs.get('pt_model_path', None) is not None:
             path = configs['pt_model_path']

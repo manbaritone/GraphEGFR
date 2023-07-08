@@ -24,7 +24,6 @@ class GraphEGFR(nn.Module):
         self.enable_fea = configs['enable_fea']
         self.enable_feaf = configs['enable_feaf']
         self.enable_feac = configs['enable_feac']
-        self.classify = configs["classify"]
         self.n_tasks = configs["n_tasks"]
 
         self.cnn1 = nn.Conv1d(fingfeac, 256, 1)
@@ -75,11 +74,8 @@ class GraphEGFR(nn.Module):
             Fringerf = self.DNN(fpf)
             y_final = torch.cat((y_final, Fringerf), 1)    
         output = self.predict_property(y_final)  
-        if self.classify:
-            output = torch.sigmoid(output)    
-
-        # print(output)
         return output
+    
     def get_model_device(self):
         return next(self.parameters()).device
 

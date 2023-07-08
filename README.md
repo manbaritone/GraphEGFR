@@ -1,6 +1,9 @@
 <!-- markdownlint-disable MD033 -->
 
 # GraphEGFR
+GraphEGFR: Multi-task and Transfer learning Based on Molecular Graph Attention Mechanism and Fingerprints Improving Inhibitor Bioactivity Prediction for EGFR Family Proteins
+
+![GraphEGFR architecture](https://github.com/manbaritone/GraphEGFR/blob/main/graphegfr_architect.png)
 
 ## Instructions
 
@@ -10,6 +13,8 @@ The file structure of the project is shown as the following diagram
 GraphEGFR
  ├─graphegfr
  ├─resources
+ │  └─LigEGFR
+ │
  ├─configs
  │  ├─setting1.json
  │  └─setting2.json
@@ -25,71 +30,21 @@ python3 run.py --config configs/settings1.json
 
 There are several options to set up in the configuration file:
 
-- `result_folder` - the directory where the results will be stored
-- `database` - identify which database to obtain data
-- `target` - selected proteins used in the study.
-  The table below shows datasets availability of corresponding proteins in  the database used in our project.
 
-  <!-- <html>
-    <style>
-      td.right-bound {
-        border-right: 1px solid;
-      }
-    </style>
-    <table>
-      <tr>
-        <th>Target \ Database</th>
-        <th>LigEGFR</th>
-        <th>KIP</th>
-        <th>BindingDB</th>
-      </tr>
-      <tr>
-        <td class="right-bound">HER1</td>
-        <td> &#x2713; </td>
-        <td> &#x2713; </td>
-        <td> &#x2713; </td>
-      </tr>
-      <tr>
-        <td class="right-bound">HER2</td>
-        <td> &#x2713; </td>
-        <td> &#x2713; </td>
-        <td> &#x2713; </td>
-      </tr>
-      <tr>
-        <td class="right-bound">HER3</td>
-        <td> &#x2713; </td>
-        <td> &#x2713; </td>
-        <td> &#x2713; </td>
-      </tr>
-    </table>
-  </html> -->
-  Target | LigEGFR | KIP | BindingDB
-  ------ | ------- | --- | ---------
-  HER1   | &#x2713; | &#x2713; | &#x2713;
-  HER2   | &#x2713; | &#x2713; | &#x2713;
-  HER3   | &#x2713; | &#x2713; | &#x2713;
+- `target` - selected proteins used in the study
+- `hyperparam` - configuration for model building process (in json format)
+- `result_folder` *[optional]* - the directory where the results will be stored
+- `database` *[optional]* - identify which database to obtain data (only option available currently is `LigEGFR`; can be omitted)
+- `metrics` *[optional]* - a list of string representing the metrics to report in the experiment. The available options are
+    `RMSE`,
+    `MAE`,
+    `MSE`,
+    `PCC`,
+    `R2`,
+    `SRCC`
 
-- `metrics` - a list of string representing the metrics to report in the experiment. The available options are
-  - Classification
-    - `Accuracy`
-    - `AUCPR`
-    - `AUROC`
-    - `Balanced_Accuracy`
-    - `BCE`
-    - `F1`
-    - `GMeans`
-    - `Kappa`
-    - `MCC`
-    - `Precision`
-    - `Recall`
-    - `Specificity`
-  - Regression
-    - `RMSE`
-    - `MAE`
-    - `MSE`
-    - `PCC`
-    - `R2`
-    - `SRCC`
+## Datasets and Pretrained Models Availability
+The datasets and pretrained models can be retrieved from [![https://doi.org/10.5281/zenodo.8051021](https://zenodo.org/badge/DOI/10.5281/zenodo.8051021.svg)](https://doi.org/10.5281/zenodo.8051021).
 
 ## Dependencies
 
