@@ -142,7 +142,8 @@ class Configs(object):
             newconfigs['pt_model_path'] = path
             newconfigs['pt_layers_names'] = pt_layers_names_dict[configs.get('pt_load', 'all')]
             newconfigs['freeze_pt'] = configs.get('freeze_pt',False)
-            
+        else:
+            newconfigs['pt_model_path'] = None
                 
         newconfigs['mainmetrics'] = metrics_dict[configs.get('mainmetrics', newconfigs['metrics'][0].name)]
 
