@@ -121,20 +121,19 @@ class GraphData:
 def load_dataset(adj,smiles,Y,fpf,fpc):
     smiles_list = []
     d = []
-    smiles_list = []
     graphconvfeaturizer = dc.feat.MolGraphConvFeaturizer(use_edges=True)
     conv_mol_featurizer = dc.feat.ConvMolFeaturizer()
     arr_convmol = conv_mol_featurizer.featurize(smiles)
     arr_graph = graphconvfeaturizer.featurize(smiles)
     for i in range(len(Y)):
-        x = torch.Tensor(arr_convmol[i].get_atom_features()).cuda()
-        edge_index = torch.LongTensor(arr_graph[i].edge_index).cuda()
-        edge_attr = torch.LongTensor(arr_graph[i].edge_features).cuda()
+        x = torch.Tensor(arr_convmol[i].get_atom_features())
+        edge_index = torch.LongTensor(arr_graph[i].edge_index)
+        edge_attr = torch.LongTensor(arr_graph[i].edge_features)
         data = Data(x=x, edge_index=edge_index, edge_attr=edge_attr, y=Y[i], adj = adj[i], fpf=fpf[i], fpc=fpc[i], \
                     dgl=GraphData(arr_convmol[i].get_atom_features(), \
                     arr_graph[i].edge_index, arr_graph[i].edge_features).to_dgl_graph())
         d.append(data)
-        smiles_list.append(smiles)
+        smiles_list.append(smiles[i])
     set_ = TestDataset(d)
     return set_, smiles_list
 
