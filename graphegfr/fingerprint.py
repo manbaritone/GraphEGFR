@@ -7,7 +7,10 @@ from rdkit.Chem.AtomPairs import Pairs
 from rdkit.Chem.AtomPairs import Torsions
 from rdkit.Avalon import pyAvalonTools
 from jpype import isJVMStarted, startJVM, getDefaultJVMPath, JPackage
-import pybel
+try:
+    from openbabel import pybel
+except ModuleNotFoundError:
+    import pybel
 import numpy as np
 from tqdm import tqdm
 import misc.longlist as longlist
