@@ -48,6 +48,9 @@ There are several options to set up in the configuration file:
 ## Datasets and Pretrained Models Availability
 The datasets and pretrained models can be retrieved from [![https://doi.org/10.5281/zenodo.11122146](https://zenodo.org/badge/DOI/10.5281/zenodo.11122146.svg)](https://doi.org/10.5281/zenodo.11122146).
 
+## GrapgEGFR on Google Colab
+[![https://colab.research.google.com/github/manbaritone/GraphEGFR/blob/main/run-colab.ipynb](https://camo.githubusercontent.com/f5e0d0538a9c2972b5d413e0ace04cecd8efd828d133133933dfffec282a4e1b/68747470733a2f2f636f6c61622e72657365617263682e676f6f676c652e636f6d2f6173736574732f636f6c61622d62616467652e737667)](https://colab.research.google.com/github/manbaritone/GraphEGFR/blob/main/run-colab.ipynb)
+
 ## Dependencies
 
 packages             | version
