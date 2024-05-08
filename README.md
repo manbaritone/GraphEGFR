@@ -70,3 +70,20 @@ torchmetrics         | 0.11.4
 xgboost              | 1.6.1
 dgl                  | 1.1.3
 dgllife              | Any
+
+## Citation
+
+```
+@article{https://doi.org/10.1002/jcc.27388,
+author = {Boonyarit, Bundit and Yamprasert, Nattawin and Kaewnuratchadasorn, Pawit and Kinchakawat, Jiramet and Prommin, Chanatkran and Rungrotmongkol, Thanyada and Nutanong, Sarana},
+title = {GraphEGFR: Multi-task and transfer learning based on molecular graph attention mechanism and fingerprints improving inhibitor bioactivity prediction for EGFR family proteins on data scarcity},
+journal = {Journal of Computational Chemistry},
+volume = {n/a},
+number = {n/a},
+pages = {},
+keywords = {drug discovery, epidermal growth factor receptor, graph attention mechanism, multi-task learning, transfer learning},
+doi = {https://doi.org/10.1002/jcc.27388},
+url = {https://onlinelibrary.wiley.com/doi/abs/10.1002/jcc.27388},
+eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1002/jcc.27388}
+}
+```
