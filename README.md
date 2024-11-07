@@ -7,6 +7,9 @@ GraphEGFR: Multi-task and Transfer Learning Based on Molecular Graph Attention M
 
 **GraphEGFR** is a model specifically designed to enhance molecular representation for the prediction of inhibitor bioactivity (pIC50) against wild-type HER1, HER2, HER4, and mutant HER1 proteins. GraphEGFR incorporates deep learning techniques such as multi-task learning and transfer learning, inspired by a graph attention mechanism for molecular graphs and deep neural networks, and convolutional neural networks for molecular fingerprints.
 
+## GraphEGFR on Google Colab
+Easy to use on Google Colab, please click [![https://colab.research.google.com/github/manbaritone/GraphEGFR/blob/main/run-colab.ipynb](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/manbaritone/GraphEGFR/blob/main/run-colab.ipynb)
+
 ## Instructions
 
 The file structure of the project is shown as the following diagram
@@ -49,9 +52,6 @@ There are several options to set up in the configuration file:
 
 ## Datasets and Pretrained Models Availability
 The datasets and pretrained models can be retrieved from [![https://doi.org/10.5281/zenodo.11122146](https://zenodo.org/badge/DOI/10.5281/zenodo.11122146.svg)](https://doi.org/10.5281/zenodo.11122146).
-
-## GraphEGFR on Google Colab
-Easy to use on Google Colab, please click [![https://colab.research.google.com/github/manbaritone/GraphEGFR/blob/main/run-colab.ipynb](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/manbaritone/GraphEGFR/blob/main/run-colab.ipynb)
 
 ## Dependencies
 
