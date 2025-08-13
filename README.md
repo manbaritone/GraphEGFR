@@ -1,6 +1,11 @@
 <!-- markdownlint-disable MD033 -->
 
 # GraphEGFR
+
+[![DOI](https://img.shields.io/badge/DOI-10.1002/jcc.27388-blue)](https://doi.org/10.1002/jcc.27388)
+
+[![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/get-started/previous-versions/)
+
 GraphEGFR: Multi-task and Transfer Learning Based on Molecular Graph Attention Mechanism and Fingerprints Improving Inhibitor Bioactivity Prediction for EGFR Family Proteins on Data Scarcity
 
 ![GraphEGFR architecture](https://github.com/manbaritone/GraphEGFR/blob/main/graphegfr_architect.png)
